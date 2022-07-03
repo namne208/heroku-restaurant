@@ -1,0 +1,66 @@
+﻿@model IEnumerable<Restaurant.Models.HoaDon>
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+}
+<div class="container-fluid">
+    <h1>Index</h1>
+
+    <p>
+        <a asp-action="Create">Create New</a>
+    </p>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.MaHoaDon)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.NgayLap)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.TongTien)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.SoLuong)
+                </th>
+
+                <th>
+                    @Html.DisplayNameFor(model => model.MaThanhToan)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.MaVanChuyen)
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        <a href="/Admin/ChiTietHoaDons/index/@Html.DisplayFor(modelItem => item.MaHoaDon)">#@Html.DisplayFor(modelItem => item.MaHoaDon)</a>
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.NgayLap)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.TongTien)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.SoLuong)
+                    </td>
+
+                    <td>
+                        @Html.DisplayFor(modelItem => item.MaThanhToanNavigation.TrangThaiThanhToan)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.MaVanChuyenNavigation.TrangThaiVanChuyen)
+                    </td>
+
+
+                </tr>
+            }
+        </tbody>
+    </table>
+    </div>

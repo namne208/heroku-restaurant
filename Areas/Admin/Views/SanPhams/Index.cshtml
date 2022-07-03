@@ -1,0 +1,104 @@
+﻿@model IEnumerable<Restaurant.Models.SanPham>
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+}
+<div class="container-fluid">
+    <h1>Index</h1>
+
+    <p>
+        <a asp-action="Create">Create New</a>
+    </p>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.AnhSanPham)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.TenSanPham)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.NguyenLieu)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.ChiTiet)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Tien)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.GiamGia)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.KichThuoc)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.SoLuongSanPham)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.NgayNhap)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.NgayCapNhat)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.MaLoaiSanPhamNavigation)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.MaThucDonNavigation)
+                </th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.AnhSanPham)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.TenSanPham)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.NguyenLieu)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.ChiTiet)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Tien)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.GiamGia)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.KichThuoc)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.SoLuongSanPham)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.NgayNhap)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.NgayCapNhat)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.MaLoaiSanPhamNavigation.MaLoaiSanPham)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.MaThucDonNavigation.MaThucDon)
+                    </td>
+                    <td>
+                        <a asp-action="Edit" asp-route-id="@item.MaSanPham">Edit</a> |
+                        <a asp-action="Details" asp-route-id="@item.MaSanPham">Details</a> |
+                        <a asp-action="Delete" asp-route-id="@item.MaSanPham">Delete</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>

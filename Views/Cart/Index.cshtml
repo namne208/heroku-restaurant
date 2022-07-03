@@ -1,0 +1,182 @@
+﻿@model IEnumerable<Restaurant.Models.GioHang>
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    <link href="~/css/vendors.css" rel="stylesheet" />
+    <link href="~/css/style.css" rel="stylesheet" />
+    <link href="~/css/shop.css" rel="stylesheet" />
+    <link href="~/css/custom.css" rel="stylesheet" />
+    <link href="~/css/wizard.css" rel="stylesheet" />
+}
+
+
+<main>
+
+    <div class="hero_single inner_pages background-image" data-background="url(https://cdn.vietnamisawesome.com/restaurants/Sol%20Kitchen%20%26%20Bar/sol-kitchen-and-bar.jpg?crop=smart&quality=80&format=webp&width=850)">
+        <div class="opacity-mask" data-opacity-mask="rgba(0, 0, 0, 0.6)">
+            <div class="container">
+                <div class="row justify-content-center">
+                    <div class="col-xl-9 col-lg-10 col-md-8">
+                        <h1>Your orders</h1>
+                        <p>Order food with home delivery or take away</p>
+                    </div>
+                </div>
+                <!-- /row -->
+            </div>
+        </div>
+        <div class="frame gray"></div>
+    </div>
+    <!-- /hero_single -->
+    <div class="bg_gray">
+        <div class="container margin_60_40">
+            <table class="table table-striped cart-list">
+                <thead>
+                    <tr>
+                        <th>
+                            Hình ảnh   &ensp; | &ensp;  Tên sản phẩm
+                        </th>
+                        <th>
+                            ĐƠn giá
+                        </th>
+                        <th>
+                            Số lượng
+                        </th>
+                        <th>
+                            Tổng
+                        </th>
+                        </th>
+
+                        <th>
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @if (Model.Count() == 0)
+                    {
+                        <center><h2>Giỏ hàng của bạn đang trống</h2></center>
+                        <center><a asp-controller="Product" asp-action="Index" style="font-size:25px">Tiếp tục mua hàng</a></center>
+                    }
+                    else
+                    {
+                        int total = 0;
+                        foreach (var item in Model)
+                        {
+
+                            var thanhtien = (item.SanPham.Tien - (item.SanPham.Tien * item.SanPham.GiamGia / 100)) * item.SoLuong;
+                            total += (int)thanhtien;
+                            <tr>
+
+                                <td style="">
+                                    <div class="thumb_cart">
+                                        <img src="~/img/SanPham/@item.SanPham.AnhSanPham" class="lazy" alt="Image">
+                                    </div>
+                                    <span class="item_cart">@item.SanPham.TenSanPham</span>
+                                </td>
+                                <td>
+                                    <strong>@String.Format("{0:n0}", item.SanPham.Tien - (item.SanPham.Tien * item.SanPham.GiamGia / 100)) ₫ </strong>
+                                </td>
+                                <td>
+                                    <div class="numbers-row">
+                                        <input type="text" value="@item.SoLuong" @*id="@($"quantity-{item.SanPham.MaSanPham}")"*@ min="1" class="qty2" name="quantity_1">
+                                        <div class="inc button_inc data-productid">+</div>
+                                        <div class="dec button_inc data-productid">-</div>
+                                    </div>
+                                </td>
+                                <td>
+                                    <strong>@String.Format("{0:n0}", (item.SanPham.Tien - (item.SanPham.Tien * item.SanPham.GiamGia / 100)) * item.SoLuong) ₫</strong>
+                                </td>
+                                <td>
+                                    <a asp-controller="Cart" asp-action="Remove" asp-route-id="@item.SanPham.MaSanPham"><i class="fa-solid fa-xmark"></i></a>
+                                </td>
+                            </tr>
+
+
+                        }
+
+
+                    }
+                </tbody>
+            </table>
+            <!--<div class="row add_top_30 flex-sm-row-reverse cart_actions">
+                <div class="col-sm-4 text-end">
+                    <button type="button" class="btn_1 outline">Update Cart</button>
+                </div>
+                <div class="col-sm-8">
+                    <div class="apply-coupon">
+                        <div class="form-group form-inline">
+                            <input type="text" name="coupon-code" value="" placeholder="Promo code" class="form-control d-inline" style="width: 150px;"><button type="button" class="btn_1 outline">Apply Coupon</button>
+                        </div>
+                    </div>
+                </div>
+            </div>-->
+            <!-- /cart_actions -->
+        </div>
+        <!-- /container -->
+    </div>
+    @if (Model.Count() == 0)
+    {
+
+    }
+    else
+    {
+        int total = 0;
+
+        <div class="box_cart">
+            <div class="container">
+                <div class="row justify-content-end">
+                    <div class="col-xl-4 col-lg-4 col-md-6">
+                        <ul>
+                            <li>
+                                <span>Tổng tiền</span>  @foreach (var item in Model)
+                                {
+
+                                    var thanhtien = (item.SanPham.Tien - (item.SanPham.Tien * item.SanPham.GiamGia / 100)) * item.SoLuong;
+                                    total += (int)thanhtien;
+                                }
+                                @(String.Format("{0:n0}", total)) ₫
+
+                            </li>
+                            <li>
+                                <span>Giao hàng</span> @(String.Format("{0:n0}", 35000)) ₫
+                            </li>
+                            <li>
+                                <span>Tổng tiền</span> @(String.Format("{0:n0}", total + 35000)) ₫
+                            </li>
+                        </ul>
+                        <a asp-controller="Cart" asp-action="CheckOut" class="btn_1 full-width cart">Thanh toán</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- /box_cart -->
+    }
+
+
+</main>
+<!-- /main -->
+
+
+
+@*@section Scripts {
+    <script>
+          $(document).ready(function () {
+              $(".Buy").click(function (event) {
+                  event.preventDefault();
+                  var productid = $(this).attr("data-productid");
+                  var quantity = $("#quantity-" + productid).val();
+                  $.ajax({
+                      type: "POST",
+                      url: "@Url.Action("Buy", "Cart")",
+                      data: {
+                          MaSanPham: productid,
+                          SoLuong:quantity
+                      },
+                      success: function (result) {
+                          window.location.href = "@Url.Action("Buy", "Cart")";
+                      }
+                  });
+              });
+          });
+    </script>
+}
+*@

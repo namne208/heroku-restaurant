@@ -1,0 +1,54 @@
+﻿@model IEnumerable<Restaurant.Models.ChiTietHoaDon>
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+}
+<div class="container-fluid">
+    <h1>Index</h1>
+
+    <p>
+        <a asp-action="Create">Create New</a>
+    </p>
+    <table class="table">
+        <thead>
+            <tr>
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.MaSanPhamNavigation.AnhSanPham)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.MaSanPhamNavigation)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.TongTien)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.SoLuong)
+                </th>
+            </tr>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        <div class="thumb_cart" >
+                            <img src="~/img/SanPham/@Html.DisplayFor(modelItem => item.MaSanPhamNavigation.AnhSanPham)" class="lazy" style="width:40px" alt="Image">
+                        </div>
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.MaSanPhamNavigation.TenSanPham)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.TongTien)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.SoLuong)
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>

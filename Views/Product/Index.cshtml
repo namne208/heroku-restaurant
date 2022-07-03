@@ -1,0 +1,148 @@
+﻿@using PagedList.Core.Mvc
+@model IEnumerable<Restaurant.Models.SanPham>
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<main>
+    <div class="hero_single inner_pages background-image" data-background="url(https://img.sachbaitap.com/picture/article/2017/0527/7e-0.jpeg)">
+        <div class="opacity-mask" data-opacity-mask="rgba(0, 0, 0, 0.6)">
+            <div class="container">
+                <div class="row justify-content-center">
+                    <div class="col-xl-9 col-lg-10 col-md-8">
+                        <h1>Our Shop</h1>
+                        <p>Order food with home delivery or take away</p>
+                    </div>
+                </div>
+                <!-- /row -->
+            </div>
+        </div>
+        <div class="frame white"></div>
+    </div>
+    <!-- /hero_single -->
+
+    <div class="filters_full clearfix">
+        <div class="container">
+            <div class="count_results">Showing 1–6 Of 12 Results</div>
+            <a href="#0" class="open_filters btn_filters"><i class="icon_adjust-vert"></i></a>
+            <div class="sort_select">
+                <select name="sort" id="sort">
+                    <option value="popularity" selected="selected">Sort by Popularity</option>
+                    <option value="rating">Sort by Average rating</option>
+                    <option value="date">Sort by newness</option>
+                    <option value="price">Sort by Price: low to high</option>
+                    <option value="price-desc">Sort by Price: high to low</option>
+                </select>
+            </div>
+        </div>
+    </div>
+    <!-- /filters_full -->
+
+    <div class="container margin_60_40">
+
+        <div class="row">
+            <aside class="col-lg-3" id="sidebar_fixed">
+                <div class="filter_col">
+                    <div class="inner_bt"><a href="#" class="open_filters"><i class="icon_close"></i></a></div>
+                    <div class="filter_type version_2">
+                        @using (Html.BeginForm("Index", "product", FormMethod.Get, new { @class = "form-inline" }))
+                        {
+                        <form role="search" id="searchform" method="get">
+                            <input value="@ViewBag.Keyword" name="searchString" type="search" placeholder="Search..." />
+                            <button type="submit" value="Tìm San Phẩm">@*<i class="icon_search"></i>*@Tìm kiếm</button>
+                        </form>
+                        }
+                        
+
+                    </div>
+                    <div class="filter_type version_2">
+                        <h4><a href="#filter_1" data-bs-toggle="collapse" class="opened">Danh mục</a></h4>
+                        <div class="collapse show" id="filter_1">
+                            <ul>
+                                <li>
+                                <i class="fa-solid fa-angle-right"></i>
+                                   <a href="/Product">Tất cả sản phẩm</a>
+                                <span class="checkmark"></span>
+                                </li>
+                                @foreach (var item in ViewBag.DanhMuc)
+                                {
+                                    <li>
+                                        <i class="fa-solid fa-angle-right"></i>
+                                        @Html.ActionLink((string)item.TenLoaiSanPham, "index", "product", new { id = item.MaLoaiSanPham })
+                                        <span class="checkmark"></span>
+                                    </li>
+                                }
+
+
+                            </ul>
+                        </div>
+                        <!-- /filter_type -->
+                    </div>
+                </div>
+            </aside>
+            <!-- /col -->
+            <div class="col-lg-9">
+                <div class="row small-gutters">       
+                    @if (Model.Count() != 0)
+                    {
+                        foreach (var item in Model)
+                        {                        
+                        <div class="col-6 col-md-4 col-xl-3" data-cue="slideInUp">
+
+                            <div class="grid_item">
+                                <figure>
+                                    <span class="ribbon off">-@item.GiamGia%</span>
+                                    <a href="/Product/Details/@item.MaSanPham">
+                                        <img class="img-fluid lazy" src="~/img/SanPham/@item.AnhSanPham" alt="">
+
+                                    </a>
+                                    <a  asp-controller="Cart" asp-action="Buy" asp-route-id="@item.MaSanPham">
+                                        <div class="add_cart"><span class="btn_1">Thêm vào giỏ hàng</span></div>
+
+
+                                    </a>
+                                </figure>
+                                <div class="rating"><i class="icon_star voted"></i><i class="icon_star voted"></i><i class="icon_star voted"></i><i class="icon_star voted"></i><i class="icon_star"></i></div>
+                                <a href="Product/Details/@item.MaSanPham">
+                                    <h3>@item.TenSanPham</h3>
+                                </a>
+                                <div class="price_box">
+                                    <span class="new_price">@String.Format("{0:n0}", item.Tien - (item.Tien * item.GiamGia / 100)) ₫ </span>
+                                    <span class="old_price">
+                                        @String.Format("{0:n0}", item.Tien) ₫  </span>
+                                </div>
+                            </div>
+                            <!-- /grid_item -->
+                        </div>
+                        }
+                    }
+                    else
+                    {
+                    <center><h2>Không có sản phẩm</h2></center>
+                    }               
+                </div>             
+                <div class="pagination_fg add_bottom_15" data-cue="slideInUp">
+                    <a href="#">&laquo;</a>
+                    @for (var p = 1; p <= ViewBag.PageSize; p++)
+                    {
+                        if (ViewBag.page == p)
+                        {
+                            <a class="btn active" href="@Url.Action("index", "product", new { page = p })">@p</a>
+                        }
+                        else
+                        {
+                            <a class="btn" href="@Url.Action("index", "product", new { page = p })">@p</a>
+                        }
+                    }
+                    <a href="#">&raquo;</a>
+                </div>
+            </div>
+            <!-- /col -->
+        </div>
+        <!-- /row -->
+    </div>
+    <!-- /container -->
+</main>
+<!-- /main -->

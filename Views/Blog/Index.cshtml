@@ -1,0 +1,136 @@
+﻿@model IEnumerable<Restaurant.Models.Blog>
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<main>
+    <div class="hero_single inner_pages background-image" data-background="url(https://i.pinimg.com/564x/b0/e0/fb/b0e0fb903664d563e9314b18fbce5510.jpg)">
+        <div class="opacity-mask" data-opacity-mask="rgba(0, 0, 0, 0.6)">
+            <div class="container">
+                <div class="row justify-content-center">
+                    <div class="col-xl-9 col-lg-10 col-md-8">
+                        <h1>Foores Blog</h1>
+                        <p>Per consequat adolescens ex cu nibh commune</p>
+                    </div>
+                </div>
+                <!-- /row -->
+            </div>
+        </div>
+        <div class="frame white"></div>
+    </div>
+    <!-- /hero_single -->
+
+    <div class="container margin_60_40">
+        <div class="row">
+            <div class="col-lg-9">
+                <div class="row">
+                    @foreach(var item in Model)
+                    {
+                    <div class="col-md-6" data-cue="slideInUp">
+                        <article class="blog">
+                            <figure>
+                                <a href="/Blog/Details/@item.MaBlog">
+                                    <img src="@item.Anh" alt="">
+                                    <div class="preview"><span>Read more</span></div>
+                                </a>
+                            </figure>
+                            <div class="post_info">
+                                <small>@item.NgayDang</small>
+                                <h2><a href="blog-post.html">@item.TieuDe</a></h2>
+                                <p>@item.NoiDung</p>
+                                <ul>
+                                    <li>
+                                        <div class="thumb"><img src="~/img/avatar.jpg" alt=""></div> Admin
+                                    </li>
+                                    <li><i class="icon_comment_alt"></i>20</li>
+                                </ul>
+                            </div>
+                        </article>
+                        <!-- /article -->
+                    </div>    
+                    }
+                    
+                    
+                </div>
+                <!-- /row -->
+
+                <div class="pagination_fg">
+                    <a href="#">&laquo;</a>
+                    <a href="#" class="active">1</a>
+                    <a href="#">2</a>
+                    <a href="#">3</a>
+                    <a href="#">4</a>
+                    <a href="#">5</a>
+                    <a href="#">&raquo;</a>
+                </div>
+
+            </div>
+            <!-- /col -->
+
+          @*  <aside class="col-lg-3">
+                <div class="widget">
+                    <div class="widget-title first">
+                        <h4>Latest Post</h4>
+                    </div>
+                    <ul class="comments-list">
+                        <li>
+                            <div class="alignleft">
+                                <a href="#0"><img src="~/img/blog-5.jpg" alt=""></a>
+                            </div>
+                            <small>Category - 11.08.2016</small>
+                            <h3><a href="#" title="">Verear qualisque ex minimum...</a></h3>
+                        </li>
+                        <li>
+                            <div class="alignleft">
+                                <a href="#0"><img src="~/img/blog-6.jpg" alt=""></a>
+                            </div>
+                            <small>Category - 11.08.2016</small>
+                            <h3><a href="#" title="">Verear qualisque ex minimum...</a></h3>
+                        </li>
+                        <li>
+                            <div class="alignleft">
+                                <a href="#0"><img src="~/img/blog-4.jpg" alt=""></a>
+                            </div>
+                            <small>Category - 11.08.2016</small>
+                            <h3><a href="#" title="">Verear qualisque ex minimum...</a></h3>
+                        </li>
+                    </ul>
+                </div>
+                <!-- /widget -->
+                <div class="widget">
+                    <div class="widget-title">
+                        <h4>Categories</h4>
+                    </div>
+                    <ul class="cats">
+                        <li><a href="#">Food <span>(12)</span></a></li>
+                        <li><a href="#">Places to visit <span>(21)</span></a></li>
+                        <li><a href="#">New Places <span>(44)</span></a></li>
+                        <li><a href="#">Suggestions and guides <span>(31)</span></a></li>
+                    </ul>
+                </div>
+                <!-- /widget -->
+                <div class="widget">
+                    <div class="widget-title">
+                        <h4>Popular Tags</h4>
+                    </div>
+                    <div class="tags">
+                        <a href="#">Food</a>
+                        <a href="#">Bars</a>
+                        <a href="#">Cooktails</a>
+                        <a href="#">Shops</a>
+                        <a href="#">Best Offers</a>
+                        <a href="#">Transports</a>
+                        <a href="#">Restaurants</a>
+                    </div>
+                </div>
+                <!-- /widget -->
+            </aside>*@
+            <!-- /aside -->
+        </div>
+        <!-- /row -->
+    </div>
+    <!-- /container -->
+</main>
+<!-- /main -->

@@ -1,0 +1,174 @@
+﻿@model Restaurant.Models.KhachHang
+
+@{
+    ViewData["Title"] = "Create";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<main class="pattern_2">
+
+    <div class="container " >
+        <div class="row justify-content-center">
+            <section class="vh-100 gradient-custom">
+                <div class="container py-5 h-100">
+                    <div class="row d-flex justify-content-center align-items-center h-100">
+                        <div class="col-12 col-md-8 col-lg-6 col-xl-5">
+                            <div class="card bg-dark text-white" style="border-radius: 1rem;">
+                                <div class="card-body p-5 text-center">
+
+                                    <div class="mb-md-5 mt-md-4 pb-5">
+
+                                        <h2 class="fw-bold mb-2 text-uppercase" style="color:aliceblue">Đăng ký</h2>
+                                        <form asp-action="Create">
+                                            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                                            @if (ViewBag.error != null)
+                                            {
+                                                <p class=" form-label" style="text-align: left; color:red ">@ViewBag.error</p>
+                                            }
+                                            <div class="form-group">
+                                                <p class="control-label" style="text-align: left; ">Họ và tên</p>
+                                                <input asp-for="TenKhachHang" class="form-control" />
+                                                <span asp-validation-for="TenKhachHang" class="text-danger"></span>
+                                            </div>
+                                            <div class="form-group">
+                                                <p class="control-label" style="text-align: left; ">Số điện thoại</p>
+                                                <input asp-for="Sdt" class="form-control" />
+                                                <span asp-validation-for="Sdt" class="text-danger"></span>
+                                            </div>
+                                            <div class="form-group">
+                                                <p class="control-label" style="text-align: left; ">Email</p>
+                                                <input asp-for="Email" class="form-control" />
+                                                <span asp-validation-for="Email" class="text-danger"></span>
+                                            </div>
+                                            <div class="form-group">
+                                                <p class="control-label" style="text-align: left; ">Mật khẩu</p>
+                                                <input asp-for="Password" class="form-control" type="password" />
+                                                <span asp-validation-for="Password" class="text-danger"></span>
+                                            </div>
+                                            <div class="form-group">
+                                                <p class="control-label" style="text-align: left; ">Địa chỉ</p>
+                                                <input asp-for="DiaChi" class="form-control" />
+                                                <span asp-validation-for="DiaChi" class="text-danger"></span>
+                                            </div>
+
+                                            <div class="form-group">
+                                                @*<input type="submit" value="Create" class="btn btn-primary" />*@
+                                                <button class="btn btn-outline-light btn-lg px-5 " type="submit" value="Create">Đăng ký</button>
+                                            </div>
+                                        </form>
+                                        @*<div class="form-outline form-white mb-4">
+                                    <p class="form-label" for="typeEmailX" style="text-align: left; ">Email</p>
+                                    <input type="email" id="typeEmailX" class="form-control form-control-lg" />
+                                </div>
+
+                                <div class="form-outline form-white mb-4">
+                                    <p class="form-label" for="typePasswordX" style="text-align: left; ">Mật khẩu</p>
+                                    <input type="password" id="typePasswordX" class="form-control form-control-lg" />
+                                </div>*@
+                                        <div class="d-flex justify-content-center text-center mt-4 pt-1">
+                                            <a href="#!" class="text-white"><i class="fab fa-facebook-f fa-lg"></i></a>
+                                            <a href="#!" class="text-white"><i class="fab fa-twitter fa-lg mx-4 px-2"></i></a>
+                                            <a href="#!" class="text-white"><i class="fab fa-google fa-lg"></i></a>
+                                        </div>
+
+                                    </div>
+
+                                    <div>
+                                        <p class="mb-0">
+                                            Bạn đã có tài khoản? <a asp-action="Index" class="text-white-50 fw-bold">Đăng nhập</a>
+                                        </p>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+        </div>
+        <!-- /row -->
+    </div>
+    <!-- /container -->
+</main>
+<!-- /main -->
+
+<<!--main>
+    <section class="vh-100 gradient-custom">
+        <div class="container py-5 h-100">
+            <div class="row d-flex justify-content-center align-items-center h-100">
+                <div class="col-12 col-md-8 col-lg-6 col-xl-5">
+                    <div class="card bg-dark text-white" style="border-radius: 1rem;">
+                        <div class="card-body p-5 text-center">
+
+                            <div class="mb-md-5 mt-md-4 pb-5">
+
+                                <h2 class="fw-bold mb-2 text-uppercase" style="color:aliceblue">Đăng ký</h2>
+                                <form asp-action="Create">
+                                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                                    <div class="form-group">
+                                        <p class="control-label" style="text-align: left; ">Họ và tên</p>
+                                        <input asp-for="TenKhachHang" class="form-control" />
+                                        <span asp-validation-for="TenKhachHang" class="text-danger"></span>
+                                    </div>
+                                    <div class="form-group">
+                                        <p class="control-label" style="text-align: left; ">Số điện thoại</p>
+                                        <input asp-for="Sdt" class="form-control" />
+                                        <span asp-validation-for="Sdt" class="text-danger"></span>
+                                    </div>
+                                    <div class="form-group">
+                                        <p class="control-label" style="text-align: left; ">Email</p>
+                                        <input asp-for="Email" class="form-control" />
+                                        <span asp-validation-for="Email" class="text-danger"></span>
+                                    </div>
+                                    <div class="form-group">
+                                        <p class="control-label" style="text-align: left; ">Mật khẩu</p>
+                                        <input asp-for="Password" class="form-control" />
+                                        <span asp-validation-for="Password" class="text-danger"></span>
+                                    </div>
+                                    <div class="form-group">
+                                        <p class="control-label" style="text-align: left; ">Địa chỉ</p>
+                                        <input asp-for="DiaChi" class="form-control" />
+                                        <span asp-validation-for="DiaChi" class="text-danger"></span>
+                                    </div>
+
+                                    <div class="form-group">-->
+                                        @*<input type="submit" value="Create" class="btn btn-primary" />*@
+                                        <!--<button class="btn btn-primary" type="submit" value="Create">Đăng ký</button>
+                                    </div>
+                                </form>-->
+                                @*<div class="form-outline form-white mb-4">
+                                        <p class="form-label" for="typeEmailX" style="text-align: left; ">Email</p>
+                                        <input type="email" id="typeEmailX" class="form-control form-control-lg" />
+                                    </div>
+
+                                    <div class="form-outline form-white mb-4">
+                                        <p class="form-label" for="typePasswordX" style="text-align: left; ">Mật khẩu</p>
+                                        <input type="password" id="typePasswordX" class="form-control form-control-lg" />
+                                    </div>*@
+                                <!--<div class="d-flex justify-content-center text-center mt-4 pt-1">
+                                    <a href="#!" class="text-white"><i class="fab fa-facebook-f fa-lg"></i></a>
+                                    <a href="#!" class="text-white"><i class="fab fa-twitter fa-lg mx-4 px-2"></i></a>
+                                    <a href="#!" class="text-white"><i class="fab fa-google fa-lg"></i></a>
+                                </div>
+
+                            </div>
+
+                            <div>
+                                <p class="mb-0">
+                                    Bạn đã có tài khoản? <a asp-action="Index" class="text-white-50 fw-bold">Đăng nhập</a>
+                                </p>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</main>-->
+
+
+
+
